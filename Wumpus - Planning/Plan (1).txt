@@ -1,0 +1,1 @@
+﻿Found Plan (output)(move agent s12 s13)(collect agent gold s13)  (:action collect    :parameters (agent gold s13)    :precondition      (and        (agent agent)        (gold gold)        (loc s13)        (at agent s13)        (at gold s13)      )    :effect      (and        (not          (at gold s13)        )        (has agent gold)      )  )

@@ -1,0 +1,120 @@
+﻿(define (problem labrynthProblem)
+    (:domain labrynthDomain)
+    (:objects agent s-1-1 s-1-2 s-1-3 s-1-4 s-2-1 s-2-2 s-2-3 s-2-4 
+                s-3-1 s-3-2 s-3-3 s-3-4 s-4-1 s-4-2 s-4-3 s-4-4 exit)
+    (:init  (Agent agent) ; define the agent
+            ; defining the locations
+            (Loc s-1-1) (Loc s-1-2) (Loc s-1-3) (Loc s-1-4)
+            (Loc s-2-1) (Loc s-2-2) (Loc s-2-3) (Loc s-2-4)
+            (Loc s-3-1) (Loc s-3-2) (Loc s-3-3) (Loc s-3-4)
+            (Loc s-4-1) (Loc s-4-2) (Loc s-4-3) (Loc s-4-4)
+            ; defining adjacency of squares
+            ; S-1-1 
+            (adj s-1-1 s-1-2) (adj s-1-2 s-1-1)
+            (adj s-1-1 s-2-1) (adj s-2-1 s-1-1)
+            (adj s-1-1 s-2-2) (adj s-2-2 s-1-1)
+            ; S-1-2
+            (adj s-1-2 s-1-1) (adj s-1-1 s-1-2)
+            (adj s-1-2 s-1-3) (adj s-1-3 s-1-2)
+            (adj s-1-2 s-2-1) (adj s-2-1 s-1-2)
+            (adj s-1-2 s-2-2) (adj s-2-2 s-1-2)
+            (adj s-1-2 s-2-3) (adj s-2-3 s-1-2)
+            ; S-1-3
+            (adj s-1-3 s-1-2) (adj s-1-2 s-1-3)
+            (adj s-1-3 s-1-4) (adj s-1-4 s-1-3)
+            (adj s-1-3 s-2-2) (adj s-2-2 s-1-3)
+            (adj s-1-3 s-2-3) (adj s-2-3 s-1-3)
+            (adj s-1-3 s-2-4) (adj s-2-4 s-1-3)
+            ; S-1-4
+            (adj s-1-4 s-1-3) (adj s-1-3 s-1-4)
+            (adj s-1-4 s-2-3) (adj s-2-3 s-1-4)
+            (adj s-1-4 s-2-4) (adj s-2-4 s-1-4)
+            ; S-2-1
+            (adj s-2-1 s-1-1) (adj s-1-1 s-2-1)
+            (adj s-2-1 s-1-2) (adj s-1-2 s-2-1)
+            (adj s-2-1 s-2-2) (adj s-2-2 s-2-1)
+            (adj s-2-1 s-3-1) (adj s-3-1 s-2-1)
+            (adj s-2-1 s-3-2) (adj s-3-2 s-2-1)
+            ; S-2-2
+            (adj s-2-2 s-1-1) (adj s-1-1 s-2-2)
+            (adj s-2-2 s-1-2) (adj s-1-2 s-2-2)
+            (adj s-2-2 s-1-3) (adj s-1-3 s-2-2)
+            (adj s-2-2 s-2-1) (adj s-2-1 S-2-2)
+            (adj s-2-2 s-2-3) (adj s-2-3 S-2-2)
+            (adj s-2-2 s-3-1) (adj s-3-1 S-2-2)
+            (adj s-2-2 s-3-2) (adj s-3-2 S-2-2)
+            (adj s-2-2 s-3-3) (adj s-3-3 S-2-2)
+            ; S-2-3
+            (adj s-2-3 s-1-2) (adj s-1-2 s-2-3)
+            (adj s-2-3 s-1-3) (adj s-1-3 s-2-3)
+            (adj s-2-3 s-1-4) (adj s-1-4 s-2-3)
+            (adj s-2-3 s-2-2) (adj s-2-2 S-2-3)
+            (adj s-2-3 s-2-4) (adj s-2-4 S-2-3)
+            (adj s-2-3 s-3-2) (adj s-3-2 S-2-3)
+            (adj s-2-3 s-3-3) (adj s-3-3 S-2-3)
+            (adj s-2-3 s-3-4) (adj s-3-4 S-2-3)
+            ; S-2-4
+            (adj s-2-4 s-1-4) (adj s-1-4 s-2-4)
+            (adj s-2-4 s-1-3) (adj s-1-3 s-2-4)
+            (adj s-2-4 s-2-3) (adj s-2-3 S-2-4)
+            (adj s-2-4 s-3-3) (adj s-3-3 s-2-4)
+            (adj s-2-4 s-3-4) (adj s-3-4 s-2-4)
+            ;s-3-1
+            (adj s-3-1 s-2-1) (adj s-2-1 s-3-1)
+            (adj s-3-1 s-2-2) (adj s-2-2 s-3-1)
+            (adj s-3-1 s-3-2) (adj s-3-2 s-3-1)
+            (adj s-3-1 s-4-1) (adj s-4-1 s-3-1)
+            (adj s-3-1 s-4-2) (adj s-4-2 s-3-1)
+            ; S-3-2
+            (adj s-3-2 s-3-1) (adj s-3-1 s-3-2)
+            (adj s-3-2 s-3-3) (adj s-3-3 s-3-2)
+            (adj s-3-2 s-2-1) (adj s-2-1 s-3-2)
+            (adj s-3-2 s-2-2) (adj s-2-2 S-3-2)
+            (adj s-3-2 s-2-4) (adj s-2-4 S-3-2)
+            (adj s-3-2 s-4-1) (adj s-4-1 S-3-2)
+            (adj s-3-2 s-4-2) (adj s-4-2 S-3-2)
+            (adj s-3-2 s-4-3) (adj s-4-3 S-3-2)
+            ; S-3-3
+            (adj s-3-3 s-3-2) (adj s-3-2 s-3-3)
+            (adj s-3-3 s-3-4) (adj s-3-4 s-3-3)
+            (adj s-3-3 s-2-2) (adj s-2-2 s-3-3)
+            (adj s-3-3 s-2-3) (adj s-2-3 S-3-3)
+            (adj s-3-3 s-2-4) (adj s-2-4 S-3-3)
+            (adj s-3-3 s-4-2) (adj s-4-2 S-3-3)
+            (adj s-3-3 s-4-2) (adj s-4-2 S-3-3)
+            (adj s-3-3 s-4-4) (adj s-4-4 S-3-3)
+            ; S-3-4
+            (adj s-3-4 s-2-4) (adj s-2-4 s-3-4)
+            (adj s-3-4 s-2-3) (adj s-2-3 s-3-4)
+            (adj s-3-4 s-3-3) (adj s-3-3 S-3-4)
+            (adj s-3-4 s-4-3) (adj s-4-3 s-3-4)
+            (adj s-3-4 s-4-4) (adj s-4-4 s-3-4)
+            ; S-4-1 
+            (adj s-4-1 s-3-1) (adj s-3-1 s-4-1)
+            (adj s-4-1 s-3-2) (adj s-3-2 s-4-1)
+            (adj s-4-1 s-4-2) (adj s-4-2 s-4-1)
+            ; S-4-2
+            (adj s-4-2 s-4-1) (adj s-4-1 s-4-2)
+            (adj s-4-2 s-4-3) (adj s-4-3 s-4-2)
+            (adj s-4-2 s-3-1) (adj s-3-1 s-4-2)
+            (adj s-4-2 s-3-2) (adj s-3-2 s-4-2)
+            (adj s-4-2 s-3-3) (adj s-3-3 s-4-2)
+            ; S-4-3
+            (adj s-4-3 s-4-2) (adj s-4-2 s-4-3)
+            (adj s-4-3 s-4-4) (adj s-4-4 s-4-3)
+            (adj s-4-3 s-3-2) (adj s-3-2 s-4-3)
+            (adj s-4-3 s-3-3) (adj s-3-3 s-4-3)
+            (adj s-4-3 s-3-4) (adj s-3-4 s-4-3)
+            ; S-4-4
+            (adj s-4-4 s-4-3) (adj s-4-3 s-4-4)
+            (adj s-4-4 s-3-4) (adj s-3-4 s-4-4)
+            (adj s-4-4 s-3-3) (adj s-3-3 s-4-4)
+            ; defining walls
+            (Wall s-2-2) (Wall s-2-3) (Wall s-1-3) (Wall s-3-3)
+            ; defining agent location
+            (At agent s-3-1)
+            ; defining exit location
+            (At exit s-3-4)
+    )
+    (:goal (and (At agent s-3-4)))
+)

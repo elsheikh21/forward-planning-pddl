@@ -1,0 +1,12 @@
+Found Plan (output)
+(move start door1 room1)
+(move door1 door2 corridor)
+(move door2 bx2 room2)
+(push box2 bx2 switch2 room2)  
+
+
+(:action move    
+    :parameters (door2 bx2 room2)    
+    :precondition (and (on shakey floor) (at shakey door2) (in door2 room2) (in bx2 room2))
+    :effect (and (at shakey bx2) (not (at shakey door2)))
+)

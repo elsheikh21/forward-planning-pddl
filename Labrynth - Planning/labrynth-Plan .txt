@@ -1,0 +1,13 @@
+﻿Found Plan (output)
+
+(move s-3-1 s-3-2 agent)
+ (:action move   
+	 :parameters (s-3-1 s-3-2 agent)    
+	 :precondition (and (agent agent) (loc s-3-1) (loc s-3-2) 
+			(not (wall s-3-2) ) (at agent s-3-1) 
+			(adj s-3-1 s-3-2))    
+	 :effect (and (not (at agent s-3-1) ) (at agent s-3-2))
+ )
+
+(move s-3-2 s-4-3 agent)
+(move s-4-3 s-3-4 agent) 

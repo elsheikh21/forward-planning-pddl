@@ -1,0 +1,10 @@
+﻿(define (domain labrynthDomain)
+    (:requirements :strips)
+    (:predicates (Wall ?y) (Agent ?x) (adj ?x ?y) (At ?x ?l) (Loc ?y))
+    (:action move
+        :parameters (?from ?to ?what)
+        :precondition (and (Agent ?what) (Loc ?from) (Loc ?to) (not (Wall ?to)) 
+                            (At ?what ?from) (adj ?from ?to ))
+        :effect (and (not(At ?what ?from)) (At ?what ?to) )
+    )
+)

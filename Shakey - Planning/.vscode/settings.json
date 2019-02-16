@@ -1,0 +1,20 @@
+{
+    "pddlParser.executableOrService": "java -javaagent:d:/tools/pddl4j/pddl4j-3.5.0.jar -server -Xms2048m -Xmx2048m fr.uga.pddl4j.parser.Parser",
+    "pddlParser.executableOptions": "$(parser) -o $(domain) -f $(problem)",
+    "spellright.language": [
+        "en"
+    ],
+    "spellright.documentTypes": [
+        "markdown",
+        "latex",
+        "plaintext",
+        "html",
+        "python",
+        "pddl"
+    ],
+    "spellright.parserByClass": {
+        "pddl": {
+            "parser": "xml"
+        }
+    }
+}

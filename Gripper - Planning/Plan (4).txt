@@ -1,0 +1,24 @@
+﻿Found Plan (output)
+
+(agent_pickup ball4 room1 gripper1)
+(agent_move room1 room2)
+(agent_drop ball1 room2 gripper1)
+
+(agent_move room2 room1)
+(agent_pickup ball3 room1 gripper1)
+(agent_move room1 room2)
+(agent_drop ball2 room2 gripper1)
+
+(agent_move room2 room1)
+(agent_pickup ball2 room1 gripper1)
+(agent_pickup ball1 room1 gripper2)
+(agent_move room1 room2)
+(agent_drop ball3 room2 gripper1)
+(agent_drop ball4 room2 gripper2)
+
+
+(:action agent_pickup 
+ :parameters (ball4 room1 gripper1)
+ :precondition (and (agent_at room1) (room room1) (ball ball4) (gripper gripper1) (gripper_free gripper1) (at ball4 room1))
+ :effect (and (not (at ball4 room1) ) (not (gripper_free gripper1) ) (carrying ball4 gripper1))
+)

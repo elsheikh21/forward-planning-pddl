@@ -1,0 +1,15 @@
+﻿Found Plan (output)
+
+(pickup gripper ballg loc1)
+(putdown gripper ballg loc2)
+(pickup gripper ballb loc4)
+(putdown gripper ballr loc1)
+(pickup gripper ballr loc3)
+(putdown gripper ballb loc3)  
+
+(:action pickup
+  :parameters (gripper ballg loc1)
+  :precondition (and (gripper gripper) (ball ballg) (location loc1) (at ballg loc1) (gripper_free gripper) (not (location_empty loc1) ) )  
+  :effect (and (not (gripper_free gripper) ) (not (at ballg loc1) ) (location_empty loc1))
+)
+

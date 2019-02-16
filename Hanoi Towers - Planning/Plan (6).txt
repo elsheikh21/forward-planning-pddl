@@ -1,0 +1,14 @@
+﻿Found Plan (output)
+(move disk1 disk2 loc2)
+(move disk2 disk3 loc3)
+(move disk1 loc2 disk2)
+(move disk3 loc1 loc2)
+(move disk1 disk2 loc1)
+(move disk2 loc1 disk3)
+(move disk1 loc1 disk2)
+
+(:action move 
+    :parameters (disk1 disk2 loc2)
+    :precondition (and (disk disk1) (on disk1 disk2) (smaller disk1 loc2) (clear disk1) (clear loc2))
+    :effect (and (clear disk2) (on disk1 loc2) (not (on disk1 disk2) ) (not (clear loc2)))
+)
